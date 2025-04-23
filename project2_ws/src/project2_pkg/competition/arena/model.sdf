@@ -1,0 +1,36 @@
+<sdf version='1.7'>
+  <model name='arena'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0.129001 -0.130413 0.53948 0 -0 0</pose>
+        <mass>1075.25</mass>
+        <inertia>
+          <ixx>170.46</ixx>
+          <ixy>2.78909</ixy>
+          <ixz>0.840198</ixz>
+          <iyy>197.514</iyy>
+          <iyz>-0.192264</iyz>
+          <izz>40.4445</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://arena/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://arena/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

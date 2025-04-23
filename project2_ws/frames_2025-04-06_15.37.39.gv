@@ -1,0 +1,16 @@
+digraph G {
+"link4" -> "ef"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"link3" -> "link4"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"chassi" -> "flw"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"chassi" -> "frw"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"chassi" -> "link1"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"link1" -> "link2"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"link2" -> "link3"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"chassi" -> "rlw"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"chassi" -> "rrw"[label=" Broadcaster: default_authority\nAverage rate: 248.938\nBuffer length: 1.177\nMost recent transform: 128.65\nOldest transform: 127.473\n"];
+"map" -> "dummy_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1743934059.9272225"[ shape=plaintext ] ;
+}->"map";
+}

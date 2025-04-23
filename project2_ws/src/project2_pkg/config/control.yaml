@@ -1,0 +1,50 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    use_sim_time: true
+
+    # Controller TYPE definitions
+    position_controller:
+      type: position_controllers/JointGroupPositionController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+
+# Controller PARAMETER definitions
+position_controller:
+  ros__parameters:
+    joints:
+      - link1_joint
+      - link2_joint
+      - link3_joint
+      - link4_joint
+      - ef_joint
+    interface_name: position
+    # These command/state interfaces might be implicitly handled or optional
+    # depending on the controller version, but let's keep them as in original
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+
+velocity_controller:
+  ros__parameters:
+    joints:
+      - flw_joint
+      - frw_joint
+      - rlw_joint
+      - rrw_joint
+    interface_name: velocity
+    # Keep these as in original
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity

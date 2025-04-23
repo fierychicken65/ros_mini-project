@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="model" xmlns:xacro="http://ros.org/wiki/xacro">
+  <link
+    name="base_link">
+    <xacro:macro name="model_color">
+    <visual>
+    <material>
+        <ambient>0.2 0.2 0.1 1</ambient>
+        <diffuse>0.2 0.2 0.1 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+    </material>
+    </visual>
+    </xacro:macro>
+
+    <inertial>
+      <origin
+        xyz="0.129000624683915 -0.130412915490147 0.539479690953805"
+        rpy="0 0 0" />
+      <mass
+        value="1075.24542317365" />
+      <inertia
+        ixx="170.460424991106"
+        ixy="2.78908689824427"
+        ixz="0.840197852069231"
+        iyy="197.513543789068"
+        iyz="-0.192264005584331"
+        izz="40.4445412063897" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="base_link">
+    <xacro:model_color />
+</gazebo>
+
+</robot>

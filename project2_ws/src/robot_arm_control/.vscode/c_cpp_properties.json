@@ -1,0 +1,27 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/gayatrid/project2_ws/install/project2_pkg/include/**",
+        "/home/gayatrid/enpm662_fall2023/testWS/install/turtlebot3_fake_node/include/**",
+        "/home/gayatrid/enpm662_fall2023/testWS/install/turtlebot3_msgs/include/**",
+        "/home/gayatrid/enpm662_fall2023/testWS/install/turtlebot3_gazebo/include/**",
+        "/home/gayatrid/enpm662_fall2023/testWS/install/dynamixel_sdk_custom_interfaces/include/**",
+        "/home/gayatrid/enpm662_fall2023/testWS/install/dynamixel_sdk/include/**",
+        "/opt/ros/galactic/include/**",
+        "/home/gayatrid/project2_ws/src/project2_pkg/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

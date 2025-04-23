@@ -1,0 +1,907 @@
+<?xml version="1.0" ?>
+<robot
+  name="project2_pkg" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:arg name="controller_config_path" default=""/>
+
+  <xacro:macro name="chassi_color">
+    <visual>
+    <material>
+        <ambient>0.8 0.558823529411765 0.1 1</ambient>
+        <diffuse>0.8 0.558823529411765 0.1 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+
+  <xacro:macro name="wheel_color">
+    <visual>
+    <material>
+        <ambient>0.1 0.1 0.1 1</ambient>
+        <diffuse>0.1 0.1 0.1 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+
+  <xacro:macro name="link1_color">
+    <visual>
+    <material>
+        <ambient>0.8 0.1 0.1 1</ambient>
+        <diffuse>0.8 0.1 0.1 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+
+  <xacro:macro name="link2_color">
+    <visual>
+    <material>
+        <ambient>0.1 0.7 0.7 1</ambient>
+        <diffuse>0.1 0.7 0.7 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+
+  <link
+    name="chassi">
+    <inertial>
+      <origin
+        xyz="-0.00273957249813026 0 -0.0358542729676732"
+        rpy="0 0 0" />
+      <mass
+        value="28.1975496713599" />
+      <inertia
+        ixx="0.0967682251741125"
+        ixy="-6.20855073866151E-18"
+        ixz="0.00154816882794152"
+        iyy="0.213605558592681"
+        iyz="-9.22777957284755E-19"
+        izz="0.27721568675433" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/chassi.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/chassi.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="flw">
+    <inertial>
+      <origin
+        xyz="-2.08166817117217E-16 -3.92047505570758E-16 -0.025"
+        rpy="0 0 0" />
+      <mass
+        value="0.109315820418966" />
+      <inertia
+        ixx="5.08403848301778E-05"
+        ixy="-1.41368946125236E-21"
+        ixz="-4.88406022657881E-20"
+        iyy="5.08403848301778E-05"
+        iyz="-1.04374504192198E-20"
+        izz="6.65918325303455E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/flw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://project2_pkg/meshes/flw.STL" />
+      </geometry>
+      <!-- Added friction surface -->
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>
+            <mu2>5.0</mu2>
+            <fdir1>0 0 0</fdir1>
+            <slip1>0.0</slip1>
+            <slip2>0.0</slip2>
+          </ode>
+          <torsional>
+            <coefficient>1.0</coefficient>
+            <patch_radius>0.0</patch_radius>
+            <surface_radius>0.0</surface_radius>
+            <use_patch_radius>true</use_patch_radius>
+            <ode>
+              <slip>0.0</slip>
+            </ode>
+          </torsional>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e9</kp>
+            <kd>1.0</kd>
+            <max_vel>0.1</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e6</threshold>
+        </bounce>
+      </surface>
+    </collision>
+  </link>
+  <link
+    name="rlw">
+    <inertial>
+      <origin
+        xyz="-3.60822483003176E-16 -2.4459601011273E-16 -0.025"
+        rpy="0 0 0" />
+      <mass
+        value="0.109315820418966" />
+      <inertia
+        ixx="5.08403848301778E-05"
+        ixy="-4.47128279588246E-22"
+        ixz="-4.70707831224661E-20"
+        iyy="5.08403848301778E-05"
+        iyz="1.91692662381799E-20"
+        izz="6.65918325303455E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/rlw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://project2_pkg/meshes/rlw.STL" />
+      </geometry>
+      <!-- Added friction surface -->
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>
+            <mu2>5.0</mu2>
+            <fdir1>0 0 0</fdir1>
+            <slip1>0.0</slip1>
+            <slip2>0.0</slip2>
+          </ode>
+          <torsional>
+            <coefficient>1.0</coefficient>
+            <patch_radius>0.0</patch_radius>
+            <surface_radius>0.0</surface_radius>
+            <use_patch_radius>true</use_patch_radius>
+            <ode>
+              <slip>0.0</slip>
+            </ode>
+          </torsional>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e9</kp>
+            <kd>1.0</kd>
+            <max_vel>0.1</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e6</threshold>
+        </bounce>
+      </surface>
+    </collision>
+  </link>
+  <link
+    name="rrw">
+    <inertial>
+      <origin
+        xyz="9.71445146547012E-17 -4.26741975090295E-16 0.025"
+        rpy="0 0 0" />
+      <mass
+        value="0.109315820418966" />
+      <inertia
+        ixx="5.08403848301778E-05"
+        ixy="-9.22254748831782E-21"
+        ixz="-4.34376393997599E-20"
+        iyy="5.08403848301778E-05"
+        iyz="1.89041222569318E-20"
+        izz="6.65918325303455E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/rrw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://project2_pkg/meshes/rrw.STL" />
+      </geometry>
+      <!-- Added friction surface -->
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>
+            <mu2>5.0</mu2>
+            <fdir1>0 0 0</fdir1>
+            <slip1>0.0</slip1>
+            <slip2>0.0</slip2>
+          </ode>
+          <torsional>
+            <coefficient>1.0</coefficient>
+            <patch_radius>0.0</patch_radius>
+            <surface_radius>0.0</surface_radius>
+            <use_patch_radius>true</use_patch_radius>
+            <ode>
+              <slip>0.0</slip>
+            </ode>
+          </torsional>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e9</kp>
+            <kd>1.0</kd>
+            <max_vel>0.1</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e6</threshold>
+        </bounce>
+      </surface>
+    </collision>
+  </link>
+  <link
+    name="frw">
+    <inertial>
+      <origin
+        xyz="4.16333634234434E-16 -1.07552855510562E-16 0.025"
+        rpy="0 0 0" />
+      <mass
+        value="0.109315820418966" />
+      <inertia
+        ixx="5.08403848301778E-05"
+        ixy="-6.75672164286764E-22"
+        ixz="-3.81073407790736E-20"
+        iyy="5.08403848301778E-05"
+        iyz="-3.21509152907343E-20"
+        izz="6.65918325303455E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/frw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://project2_pkg/meshes/frw.STL" />
+      </geometry>
+      <!-- Added friction surface -->
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.0</mu>
+            <mu2>5.0</mu2>
+            <fdir1>0 0 0</fdir1>
+            <slip1>0.0</slip1>
+            <slip2>0.0</slip2>
+          </ode>
+          <torsional>
+            <coefficient>1.0</coefficient>
+            <patch_radius>0.0</patch_radius>
+            <surface_radius>0.0</surface_radius>
+            <use_patch_radius>true</use_patch_radius>
+            <ode>
+              <slip>0.0</slip>
+            </ode>
+          </torsional>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e9</kp>
+            <kd>1.0</kd>
+            <max_vel>0.1</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e6</threshold>
+        </bounce>
+      </surface>
+    </collision>
+  </link>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="-3.21003580314172E-09 4.26012929446995E-08 0.0677439661630031"
+        rpy="0 0 0" />
+      <mass
+        value="0.341621414343317" />
+      <inertia
+        ixx="0.000648673582132355"
+        ixy="-4.90273211581649E-11"
+        ixz="-1.80619345004339E-11"
+        iyy="0.000651814897033303"
+        iyz="-6.89923725737733E-10"
+        izz="7.45993662586312E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="-4.70220331422189E-10 0.0466681240720445 -0.0104201481503879"
+        rpy="0 0 0" />
+      <mass
+        value="0.10888313052851" />
+      <inertia
+        ixx="0.000419192112350754"
+        ixy="3.46492647492807E-12"
+        ixz="1.3319581537547E-13"
+        iyy="2.51973970216068E-05"
+        iyz="1.81952364827832E-05"
+        izz="0.000412191041793907" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link3">
+    <inertial>
+      <origin
+        xyz="-0.00116814839173087 0.0597908763668615 0.00120341101632475"
+        rpy="0 0 0" />
+      <mass
+        value="0.0221942373570941" />
+      <inertia
+        ixx="4.04580709256211E-05"
+        ixy="5.79817985829224E-07"
+        ixz="1.51325476356364E-13"
+        iyy="2.14599324989843E-06"
+        iyz="-8.01720827635084E-12"
+        izz="4.15261418916344E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link4">
+    <inertial>
+      <origin
+        xyz="-1.73472347597681E-17 0.0443885505101979 1.04083408558608E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.0165310476988243" />
+      <inertia
+        ixx="1.41637233039097E-05"
+        ixy="-6.13703140395745E-21"
+        ixz="7.08782812029796E-23"
+        iyy="6.27395853241919E-07"
+        iyz="-4.07242755715004E-22"
+        izz="1.44343317447862E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="ef">
+    <inertial>
+      <origin
+        xyz="0.000101260767846219 -4.85722573273506E-17 -0.031758493484343"
+        rpy="0 0 0" />
+      <mass
+        value="0.155748244072589" />
+      <inertia
+        ixx="0.000191499189668445"
+        ixy="-1.73105957741762E-19"
+        ixz="3.08900711374907E-08"
+        iyy="0.000141197130023078"
+        iyz="2.09102408995788E-20"
+        izz="0.00025525841201498" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/ef.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://project2_pkg/meshes/ef.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="flw_joint"
+    type="continuous">
+    <origin
+      xyz="0.09 0.115 -0.063"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="chassi" />
+    <child
+      link="flw" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <joint
+    name="rlw_joint"
+    type="continuous">
+    <origin
+      xyz="-0.09 0.115 -0.063"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="chassi" />
+    <child
+      link="rlw" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <joint
+    name="rrw_joint"
+    type="continuous">
+    <origin
+      xyz="-0.09 -0.115 -0.063"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="chassi" />
+    <child
+      link="rrw" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <joint
+    name="frw_joint"
+    type="continuous">
+    <origin
+      xyz="0.09 -0.115 -0.063"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="chassi" />
+    <child
+      link="frw" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <joint
+    name="link1_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="chassi" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="0" />
+  </joint>
+  <joint
+    name="link2_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.00375 0.15"
+      rpy="1.5708 0 0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0.15203 0 0.98838" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="0" />
+  </joint>
+  <joint
+    name="link3_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.14983 -0.0069534"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="0" />
+  </joint>
+  <joint
+    name="link4_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0014042 0.10017 0.0012034"
+      rpy="0 0 0" />
+    <parent
+      link="link3" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="0" />
+  </joint>
+  <joint
+    name="ef_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.085 0"
+      rpy="-1.5708 0 -3.1416" />
+    <parent
+      link="link4" />
+    <child
+      link="ef" />
+    <axis
+      xyz="-0.9462 0.14554 0.28902" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="1"
+      velocity="0" />
+  </joint>
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+
+    <joint name="flw_joint">
+      <command_interface name="velocity">
+        <param name="min">-100000.0</param>
+        <param name="max">100000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="frw_joint">
+      <command_interface name="velocity">
+        <param name="min">-100000.0</param>
+        <param name="max">100000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rlw_joint">
+      <command_interface name="velocity">
+        <param name="min">-100000.0</param>
+        <param name="max">100000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rrw_joint">
+      <command_interface name="velocity">
+        <param name="min">-100000.0</param>
+        <param name="max">100000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="link1_joint">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+        <param name="initial_value">-0.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="link2_joint">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+        <param name="initial_value">0.53</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="link3_joint">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+        <param name="initial_value">2.43</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="link4_joint">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+        <param name="initial_value">-0.615</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="ef_joint">
+      <command_interface name="position">
+        <param name="min">-3.14</param>
+        <param name="max">3.14</param>
+        <param name="initial_value">1.69</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(arg controller_config_path)</parameters> 
+      
+      <param name="use_global_robot_description">true</param> 
+      <ros>
+          <param name="use_sim_time">true</param> 
+      </ros>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="chassi">
+    <sensor name="lidar" type="ray">
+      <pose>0.0 0.0 0.0 0 0 0</pose>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1.00000</resolution>
+            <min_angle>0.000000</min_angle>
+            <max_angle>6.280000</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120000</min>
+          <max>3.5</max>
+          <resolution>0.015000</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frame_name>chassi</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <plugin name='vacuum_gripper' filename='libgazebo_ros_vacuum_gripper.so'>
+      <ros>
+        <namespace>/vacuum_gripper</namespace>
+        <remapping>switch:=custom_switch</remapping>
+        <remapping>grasping:=custom_grasping</remapping>
+      </ros>
+      <link_name>ef</link_name>
+      <max_distance>30.0</max_distance>
+      <fixed>ground_plane</fixed>
+      <fixed>wall</fixed>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="libodometry_plugin.so" name="odometry_plugin">
+      <frame>ef</frame>
+      <world_frame>fixed_world</world_frame>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="chassi">
+      <xacro:chassi_color />
+  </gazebo>
+  <gazebo reference="flw">
+      <xacro:wheel_color />
+  </gazebo>
+  <gazebo reference="frw">
+      <xacro:wheel_color />
+  </gazebo>
+  <gazebo reference="rlw">
+      <xacro:wheel_color />
+  </gazebo>
+  <gazebo reference="rrw">
+      <xacro:wheel_color />
+  </gazebo>
+  <gazebo reference="link1">
+      <xacro:link1_color />
+  </gazebo>
+  <gazebo reference="link2">
+      <xacro:link1_color />
+  </gazebo>
+  <gazebo reference="link3">
+      <xacro:link1_color />
+  </gazebo>
+  <gazebo reference="link4">
+      <xacro:link1_color />
+  </gazebo>
+  <gazebo reference="ef">
+      <xacro:wheel_color />
+  </gazebo>
+
+</robot>
